@@ -6,11 +6,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Blazored.Modal;
+using BlazorApp.Client.Interfaces;
+using BlazorApp.Client.Services;
+using BlazorApp.Client.Data;
 
 namespace BlazorApp.Client
 {
@@ -29,9 +32,13 @@ namespace BlazorApp.Client
             builder.Services.AddScoped<AuthenticationStateProvider, JwtAuthenticatorProvider>(provider => provider.GetRequiredService<JwtAuthenticatorProvider>());
             builder.Services.AddScoped<ILoginServices, JwtAuthenticatorProvider>(provider => provider.GetRequiredService<JwtAuthenticatorProvider>());
             builder.Services.AddBlazoredModal();
+            builder.Services.AddScoped<IAuthDataServices, AuthDataServices>();
+
 
             //System.Globalization.CultureInfo.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
             await builder.Build().RunAsync();
+
+
         }
 
     }

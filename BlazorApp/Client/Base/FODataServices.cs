@@ -1,7 +1,5 @@
-﻿using FOCombustibleApi.Infrastructure.Domain.Models.bdCombustible;
-using FOCombustibleApi.Infrastructure.Domain.Seetings;
-using Microsoft.AspNetCore.ProtectedBrowserStorage;
-using PlantillaUI.Data;
+﻿using BlazorApp.Client.Auth;
+using BlazorApp.Client.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace PlantillaUI.Base
+namespace BlazorApp.Base
 {
     public abstract class FODataServices
     {
@@ -25,7 +23,7 @@ namespace PlantillaUI.Base
         /// <summary>
         /// Variables para recuperar información.
         /// </summary>
-        protected ProtectedLocalStorage localStorageService { get; set; }
+        //protected ProtectedLocalStorage localStorageService { get; set; }
         /// <summary>
         /// Variable para el nombre de la API a la cual se va a realizar las solicitudes HTTP.
         /// </summary>
@@ -34,11 +32,11 @@ namespace PlantillaUI.Base
         /// Método para setear el token de autorización al HTTPClient.
         /// </summary>
         /// <returns></returns>
-        protected async Task SetToken()
-        {
-            var token = await localStorageService.GetAsync<string>("accessToken");
-            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-        }
+        //protected async Task SetToken()
+        //{
+        //    var token = await localStorageService.GetAsync<string>("accessToken");
+        //    httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        //}
         /// <summary>
         /// Método para realizar una solicitud HTTP de tipo SEND, en el cual los parametros de busqueda se envian como un objeto.
         /// </summary>
@@ -237,19 +235,19 @@ namespace PlantillaUI.Base
 
         }
 
-        protected async Task<List<T>> ObtainforObject<T>(string service, FiltroConsulta obj)
-        {
-            //await SetToken();
-            List<T> Listobj = new List<T>();
+        //protected async Task<List<T>> ObtainforObject<T>(string service, FiltroConsulta obj)
+        //{
+        //    //await SetToken();
+        //    List<T> Listobj = new List<T>();
 
-            StringContent content = new StringContent(JsonSerializer.Serialize(obj), Encoding.UTF8, "application/json");
+        //    StringContent content = new StringContent(JsonSerializer.Serialize(obj), Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await httpClient.PostAsync($"{urlApi}/" + service, content);
+        //    HttpResponseMessage response = await httpClient.PostAsync($"{urlApi}/" + service, content);
 
-            if (response.IsSuccessStatusCode)
-                Listobj = JsonSerializer.Deserialize<List<T>>(await response.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        //    if (response.IsSuccessStatusCode)
+        //        Listobj = JsonSerializer.Deserialize<List<T>>(await response.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-            return Listobj;
-        }
+        //    return Listobj;
+        //}
     }
 }

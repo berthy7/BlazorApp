@@ -1,8 +1,5 @@
 ﻿@page "/Login"
-@inject HttpClient http
-@inject NavigationManager uriHelper
-@inject BlazorApp.Client.Auth.ILoginServices loginService
-@inject IModalService ModalService
+@inherits LoginBase
 
 <div class="row" style="margin-top: 30px;">
     <div class="col-md-3 col-sm-12" style="background-image: linear-gradient(to right, #28a745 0%, #17a2b8 100%); border-radius: 5px; color: white; padding: 20px; margin: 0 auto auto auto;">
@@ -33,28 +30,3 @@
     </div>
 </div>
 
-
-
-@code {
-    [CascadingParameter] public IModalService Modal { get; set; }
-
-    private UserLogin userInfo = new UserLogin();
-
-    private async Task Loger()
-    {
-        var modal = Modal.Show<ModalWait>("", SharedModalOptions.modalOptionsWait);
-        var result = await http.PostAsJsonAsync<UserLogin>("Login/Login", userInfo);
-        if (result.IsSuccessStatusCode)
-        {
-            await loginService.Login(result.Content.ReadAsStringAsync().Result);
-            uriHelper.NavigateTo("");
-        }
-        else
-        {
-            modal.Close();
-            Modal.Show<ModalInfo>("Error", SharedModalOptions.SetParameterModalInfo(result.Content.ReadAsStringAsync().Result, "alert alert-danger"), SharedModalOptions.modalOptionsInfo);
-        }
-
-    }
-
-}
