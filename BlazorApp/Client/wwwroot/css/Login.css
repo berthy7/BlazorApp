@@ -1,0 +1,161 @@
+﻿:root {
+    --naranjaCMYKRgb: rgb(255, 69, 18);
+    --naranjaCMYKHex: #ff4512;
+    --naranjaRGB: rgb(246, 96, 20);
+    --naranjaHMTL: #F66014;
+    --naranjaAppCapacitacion: #ef7c00;
+    --naranjaHTMLHover: #ffc23ad4;
+    --naranjaModuloImagen: #ffb200;
+    --negroRGB: rgb(7 7 7);
+    --negroHMTL: #070707;
+    --amarilloCMYKRgb: rgb(240, 255, 84);
+    --amarilloCMYKHex: #f0ff54;
+    --amarilloRGB: rgb(245, 233, 68);
+    --amarilloHMTL: #F5E944;
+    --grisRGB: rgb(177, 177, 177);
+    --grisRGBNuevo: rgb(165 165 165 / 70%);
+    --grisLetras: rgb(0, 0, 0, 0.7);
+    --grisCabecera: #5a6268;
+    --grisCabeceraGrilla: #d1d6df;
+}
+
+html, body {
+    height: 100%;
+}
+
+.divContent {
+    align-items: center;
+    background-color: #202021;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.divButtonLogin {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+}
+
+.b-tooltip:before {
+    background: var(--naranjaModuloImagen) !important;
+}
+
+.b-tooltip:after {
+    border-color: transparent transparent var(--naranjaModuloImagen) transparent !important;
+}
+
+/*#region Formulario Login*/
+.form {
+    background-color: var(--grisRGBNuevo) !important;
+    border-radius: 10px;
+    color: white;
+    padding: 0 10px;
+}
+
+.card {
+    background-color: transparent;
+    border: none;
+}
+
+.divLogin {
+    position: fixed;
+    z-index: 1;
+}
+
+    .divLogin.visible {
+        opacity:1;
+    }
+
+    .divLogin.invisible {
+        opacity: 0;
+    }
+
+.visible, .invisible {
+    transition: all 1s ease-in-out;
+}
+/*h1 span:first-child {
+    color: var(--grisRGB);
+}*/
+h1 span:last-child {
+    color: var(--naranjaModuloImagen);
+}
+
+h4 {
+    /*color: var(--grisRGB);*/
+    font-size: 16px;
+}
+
+.col-form-label {
+    color: whitesmoke;
+}
+
+input.form-control:focus {
+    outline: none;
+    border: 2px solid var(--amarilloHMTL) !important;
+    box-shadow: 0 2px 10px 2px var(--amarilloHMTL) !important;
+    -moz-box-shadow: 0 2px 10px 2px var(--amarilloHMTL) !important;
+    -webkit-box-shadow: 0 2px 10px 2px var(--amarilloHMTL) !important;
+}
+
+
+button:not(.close) {
+    background-color: var(--naranjaModuloImagen) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    border: 1px solid #ffa500 !important;
+}
+
+    button:not(.close):hover, button:not(.close):focus {
+        background-color: #ffa500 !important;
+        outline: none;
+        box-shadow: 0 0 8px 2px #ffa500 !important;
+        -moz-box-shadow: 0 0 8px 2px #ffa500 !important;
+        -webkit-box-shadow: 0 0 8px 2px #ffa500 !important;
+    }
+
+.form-control.is-invalid, .was-validated .form-control:invalid {
+    border: 2px solid #dc3545 !important;
+    box-shadow: 0 0 15px 2px #dc3545 !important;
+    -moz-box-shadow: 0 0 15px 2px #dc3545 !important;
+    -webkit-box-shadow: 0 0 15px 2px #dc3545 !important;
+}
+
+.form-control.is-valid, .was-validated .form-control:valid {
+    border-color: transparent;
+}
+
+.invalid-feedback {
+    color: whitesmoke;
+    font-weight: bold;
+}
+/*#endregion Formulario Login*/
+/*#region Carousel*/
+.divCarrusel {
+    height: 100%;
+    width: 100%;
+}
+
+.carousel.slide, .carousel-item {
+    height: 100%;
+}
+
+.carousel-inner {
+    border-radius: 5px;
+    height: 100%;
+}
+
+
+img {
+    height: 100%;
+    width: 100%;
+}
+/*#endregion Carousel*/
+
+.divLogo {
+    position: fixed;
+    top: 0px;
+    left: 10px;
+}

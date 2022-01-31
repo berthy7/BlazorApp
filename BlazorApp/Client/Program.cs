@@ -6,20 +6,21 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 using System;
-using System.Net.Http;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Blazored.Modal;
 using BlazorApp.Client.Interfaces;
 using BlazorApp.Client.Services;
-using BlazorApp.Client.Data;
+using Blazorise;
+using Blazorise.Bootstrap;
+using Blazorise.Icons.FontAwesome;
 
 namespace BlazorApp.Client
 {
     public class Program
     {
-
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -32,13 +33,17 @@ namespace BlazorApp.Client
             builder.Services.AddScoped<AuthenticationStateProvider, JwtAuthenticatorProvider>(provider => provider.GetRequiredService<JwtAuthenticatorProvider>());
             builder.Services.AddScoped<ILoginServices, JwtAuthenticatorProvider>(provider => provider.GetRequiredService<JwtAuthenticatorProvider>());
             builder.Services.AddBlazoredModal();
-            builder.Services.AddScoped<IAuthDataServices, AuthDataServices>();
 
+            builder.Services.AddBlazorise(options =>
+            {
+                options.ChangeTextOnKeyPress = true; // optional
+            })
+                .AddBootstrapProviders()
+                .AddFontAwesomeIcons();
 
+            builder.Services.AddHttpClient<IAuthDataServices, AuthDataServices>();
             //System.Globalization.CultureInfo.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
             await builder.Build().RunAsync();
-
-
         }
 
     }

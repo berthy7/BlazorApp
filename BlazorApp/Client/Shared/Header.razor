@@ -1,0 +1,26 @@
+﻿
+@using Microsoft.AspNetCore.Http
+@inherits HeaderBase
+
+<LayoutHeader Fixed="true" Class="border-bottom">
+    <ChildContent>
+        <Row Style="align-items:center;height:49px;">
+            <Column ColumnSize="ColumnSize.IsFull.OnMobile.IsFull.OnTablet.IsFull.OnDesktop">
+                <Field Horizontal="true" Margin="Margin.Is0.OnAll">
+                    <FieldLabel ColumnSize="ColumnSize.Is10.OnMobile.Is11.OnTablet.Is11.OnDesktop" Padding="Padding.Is0.FromTop.Is0.FromBottom" Class="text-center align-self-center" Style="font-size:30px;">
+                        @*<span style="color:white">Ges</span><span style="color: var(--naranjaModuloImagen);">Ap</span>*@
+                        <span style="color:white">Sistema de Combustible</span>
+                    </FieldLabel>
+                    <FieldBody ColumnSize="ColumnSize.Is2.OnMobile.Is1.OnTablet.Is1.OnDesktop" Class="text-right">
+                        <Tooltip Text="Login" Placement="TooltipPlacement.Bottom" Fade="true">
+                            <Button Class="rounded-circle buttonNaranja" Clicked="InformacionUsuario" @onclick:stopPropagation="true" Size="Size.Medium">
+                                <Icon Name="@("far fa-user")"></Icon>
+                            </Button>
+                        </Tooltip>
+                    </FieldBody>
+                </Field>
+            </Column>
+        </Row>
+        <UserPanel @ref="modalRef" />
+    </ChildContent>
+</LayoutHeader>

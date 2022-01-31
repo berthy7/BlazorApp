@@ -1,28 +1,38 @@
-<!DOCTYPE html>
-<html lang="es-do" style="background-color: #e9ecef; ">
+﻿<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blazor App</title>
     <base href="/" />
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/app.css" rel="stylesheet" />
-    <link href="BlazorApp.Client.styles.css" rel="stylesheet" />
-    <link href="_content/Blazored.Modal/blazored-modal.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/fontawesome/fontawesome.css" />
+    <link rel="stylesheet" href="_content/Blazorise/blazorise.css" />
+    <link rel="stylesheet" href="_content/Blazorise.Bootstrap/blazorise.bootstrap.css" />
+    <link rel="stylesheet" href="_content/Blazorise.Sidebar/blazorise.sidebar.css" />
+    <link rel="stylesheet" href="_content/Blazorise.Snackbar/blazorise.snackbar.css" />
+    <link rel="stylesheet" href="css/app.css" />
 </head>
 
 <body>
-    <div id="app">Loading...</div>
+    <app id="app"><div class="loader"></div></app>
 
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
+    <!--<app>
+        @(await Html.RenderComponentAsync<>
+        (RenderMode.Server))
+    </app>-->
 
-    <script src="_framework/blazor.webassembly.js"></script>
-    <script src="_content/Blazored.Modal/blazored.modal.js"></script>
+        <div id="blazor-error-ui">
+            An unhandled error has occurred.
+            <a href="" class="reload">Reload</a>
+            <a class="dismiss">🗙</a>
+        </div>
+
+        <script src="_framework/blazor.webassembly.js"></script>
+        <script src="_content/Blazored.Modal/blazored.modal.js"></script>
+        <script src="_content/Blazorise/blazorise.js"></script>
+        <script src="_content/Blazorise.Bootstrap/blazorise.bootstrap.js"></script>
 </body>
 
 </html>

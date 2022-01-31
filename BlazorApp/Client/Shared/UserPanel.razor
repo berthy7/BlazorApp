@@ -1,0 +1,50 @@
+﻿@inherits UserPanelBase
+
+<Modal @ref="modalInfoUsuario">
+    <ModalContent Size="ModalSize.Default" Centered="true">
+        <ModalHeader>
+            <ModalTitle>
+                Información del Usuario
+            </ModalTitle>
+            <CloseButton />
+        </ModalHeader>
+        <ModalBody>
+            <Row>
+                <Column ColumnSize="ColumnSize.Is12.OnTablet.Is12.OnDesktop">
+                    <ChildContent>
+                        <div class="col-sm-4 d-inline-block text-left">Usuario:</div>
+                        <b class="col-sm-8">@Usuario</b>
+                        <div class="col-sm-4 d-inline-block text-left">Nombre Completo:</div>
+                        <b class="col-sm-8">@Nombre</b>
+                        <div class="col-sm-6 d-inline-block text-left">Correo:</div>
+                        <b class="col-sm-6">@Correo</b>
+                        <div class="col-sm-4 d-inline-block text-left">Perfil:</div>
+                        <b class="col-sm-8">@Roles</b>
+                    </ChildContent>
+                </Column>
+            </Row>
+        </ModalBody>
+        <ModalFooter>
+            <Button Class="buttonNaranjaSinBox" Clicked="CerrarModal">Aceptar</Button>
+            <Button Color="Color.Secondary" Clicked="@(()=>modalCerrarSesion.Show())">Cerrar Sesión</Button>
+        </ModalFooter>
+    </ModalContent>
+</Modal>
+
+<Modal @ref="modalCerrarSesion">
+    <ModalContent Margin="Margin.IsAuto" Style="width:70%;" Centered="true">
+        <ModalHeader Class="bg-danger text-white" Padding="Padding.Is2">
+            <ModalTitle>
+                ¿Desea cerrar su sesión?
+            </ModalTitle>
+            <CloseButton Class="text-white" Style="padding:20px 20px;opacity:1;" />
+        </ModalHeader>
+        <ModalBody>
+            Cerrar sesión
+        </ModalBody>
+        <ModalFooter Padding="Padding.Is1">
+            <Button Class="buttonNaranjaSinBox" Clicked="CerrarSesion">Sí</Button>
+            <Button Color="Color.Secondary" Clicked="@(() => modalCerrarSesion.Hide())">No</Button>
+        </ModalFooter>
+    </ModalContent>
+</Modal>

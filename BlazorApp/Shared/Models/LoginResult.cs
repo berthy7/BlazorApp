@@ -9,6 +9,6 @@ namespace BlazorApp.Shared.Models
     {
         public bool Successful { get; set; }
         public string Error { get; set; }
-        public User user { get; set; }
+        public Usuario user { get; set; }
     }
 }

@@ -14,7 +14,5 @@ namespace BlazorApp.Shared.Models
 
         [Display(Name = "Password"), Required(ErrorMessage = Utilities.MSGREQUIRED)]
         public string Password { get; set; }
-
-        public string CodigoApp { get; set; }
     }
 }

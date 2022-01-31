@@ -3,8 +3,9 @@ using BlazorApp.Client.Interfaces;
 using BlazorApp.Client.Shared;
 using BlazorApp.Shared.Models;
 using Blazored.Modal.Services;
+using Blazorise;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,23 +15,26 @@ namespace BlazorApp.Client.Pages.Auth
 {
     public class LoginBase : ComponentBase
     {
-
         [CascadingParameter] public IModalService Modal { get; set; }
         [Inject] NavigationManager navigationManager { get; set; }
 
         [Inject] IAuthDataServices authDataServices { get; set; }
         [Inject] ILoginServices loginService { get; set; }
 
+        public Validations annotationsValidations { get; set; }
+
 
         public UserLogin userInfo = new UserLogin();
 
-        public User user = new User();
+        public bool modalVerificacionLogin { get; set; }
+
 
         public async Task Loger()
         {
-            var modal = Modal.Show<ModalWait>("", SharedModalOptions.modalOptionsWait);
+            modalVerificacionLogin = true;
+            //var modal = Modal.Show<ModalWait>("", SharedModalOptions.modalOptionsWait);
 
-            userInfo.CodigoApp = "CIS";
+            //userInfo.CodigoApp = "CIS";
 
             LoginResult loginResult = await authDataServices.LoginAsync(userInfo);
 
@@ -41,23 +45,22 @@ namespace BlazorApp.Client.Pages.Auth
             }
             else
             {
-                modal.Close();
-                Modal.Show<ModalInfo>("Error", SharedModalOptions.SetParameterModalInfo(loginResult.Error, "alert alert-danger"), SharedModalOptions.modalOptionsInfo);
+                //modal.Close();
+                //Modal.Show<ModalInfo>("Error", SharedModalOptions.SetParameterModalInfo(loginResult.Error, "alert alert-danger"), SharedModalOptions.modalOptionsInfo);
 
             }
 
-            //var result = await http.PostAsJsonAsync<UserLogin>("Login/Login", userInfo);
-            //if (result.IsSuccessStatusCode)
-            //{
-            //    await loginService.Login(result.Content.ReadAsStringAsync().Result);
-            //    uriHelper.NavigateTo("");
-            //}
-            //else
-            //{
-            //    modal.Close();
-            //    Modal.Show<ModalInfo>("Error", SharedModalOptions.SetParameterModalInfo(result.Content.ReadAsStringAsync().Result, "alert alert-danger"), SharedModalOptions.modalOptionsInfo);
-            //}
+            modalVerificacionLogin = false;
 
         }
+
+        public async Task Enter(KeyboardEventArgs e)
+        {
+            if (e.Code == "Enter" || e.Code == "NumpadEnter")
+            {
+                await Loger();
+            }
+        }
+
     }
 }

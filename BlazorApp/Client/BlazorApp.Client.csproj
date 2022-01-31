@@ -6,17 +6,19 @@
 
   <ItemGroup>
     <PackageReference Include="Blazored.Modal" Version="6.0.1" />
-    <PackageReference Include="Blazorise" Version="0.9.5.4" />
-    <PackageReference Include="Blazorise.Animate" Version="0.9.5.4" />
-    <PackageReference Include="Blazorise.Bootstrap" Version="0.9.5.4" />
-    <PackageReference Include="Blazorise.Components" Version="0.9.5.4" />
-    <PackageReference Include="Blazorise.DataGrid" Version="0.9.5.4" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.5.4" />
-    <PackageReference Include="Blazorise.Sidebar" Version="0.9.5.4" />
-    <PackageReference Include="Blazorise.Snackbar" Version="0.9.5.4" />
+    <PackageReference Include="Blazorise" Version="0.9.4.1" />
+    <PackageReference Include="Blazorise.Animate" Version="0.9.4.1" />
+    <PackageReference Include="Blazorise.Bootstrap" Version="0.9.4.1" />
+    <PackageReference Include="Blazorise.Components" Version="0.9.4.1" />
+    <PackageReference Include="Blazorise.DataGrid" Version="0.9.4.1" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.4.1" />
+    <PackageReference Include="Blazorise.Sidebar" Version="0.9.4.1" />
+    <PackageReference Include="Blazorise.Snackbar" Version="0.9.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="5.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.11" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
   </ItemGroup>
 
@@ -25,8 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
+    <Folder Include="NewFolder\" />
+    <Folder Include="wwwroot\css\bootstrap\" />
   </ItemGroup>
 
 </Project>
