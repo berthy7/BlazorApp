@@ -1,0 +1,26 @@
+﻿
+
+
+return loginlocal();
+
+
+        private LoginResult loginlocal()
+        {
+            UserResult userResult = new UserResult();
+            LoginResult respuesta = new LoginResult();
+
+            userResult.UserId = 1;
+            userResult.Username = "226393";
+            userResult.Nombre = "Berthy Vargas Villarreal";
+            userResult.Correo = "berthy.vargas@fo.com.bo";
+            userResult.Role = "Administrador";
+            userResult.AccessToken = BuildToken(userResult, "CIS");
+
+
+            respuesta.SuccessFul = true;
+            respuesta.Error = "";
+            respuesta.User = userResult;
+
+
+            return respuesta;
+        }
