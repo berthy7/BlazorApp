@@ -1,9 +1,11 @@
 ﻿using BlazorApp.Client.Helpers;
+using BlazorApp.Shared.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -57,22 +59,48 @@ namespace BlazorApp.Client.Auth
         {
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
             return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(ParseClaimsFromJwt(token), "jwt")));
+            //return new AuthenticationState(new ClaimsPrincipal(GetClaimsIdentity(user)));
+        }
+
+        private ClaimsIdentity GetClaimsIdentity(Usuario user)
+        {
+            var claimsIdentity = new ClaimsIdentity();
+
+            if (user.correo != null)
+            {
+                claimsIdentity = new ClaimsIdentity(new[]
+                                {
+                                    new Claim(nameof(Usuario.userid), user.userid.ToString()),
+                                    new Claim(nameof(Usuario.username), user.username),
+                                    new Claim(nameof(Usuario.matricula), user.matricula),
+                                    new Claim(ClaimTypes.Name, user.nombre),
+                                    new Claim(nameof(Usuario.role), user.role),
+                                    new Claim("Correo", user.correo)
+                                }, "apiauth_type");
+            }
+
+            return claimsIdentity;
         }
 
         private IEnumerable<Claim> ParseClaimsFromJwt(string jwt)
         {
+            var stream = jwt;
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(stream);
+            var tokenS = jsonToken as JwtSecurityToken;
+
             var claims = new List<Claim>();
             var payload = jwt.Split('.')[1];
             var jsonBytes = ParseBase64WithoutPadding(payload);
             var keyValuePairs = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonBytes);
 
-            keyValuePairs.TryGetValue(ClaimTypes.Role, out object roles);
+            keyValuePairs.TryGetValue(ClaimTypes.Role, out object role);
 
-            if (roles != null)
+            if (role != null)
             {
-                if (roles.ToString().Trim().StartsWith("["))
+                if (role.ToString().Trim().StartsWith("["))
                 {
-                    var parsedRoles = JsonSerializer.Deserialize<string[]>(roles.ToString());
+                    var parsedRoles = JsonSerializer.Deserialize<string[]>(role.ToString());
 
                     foreach (var parsedRole in parsedRoles)
                     {
@@ -81,7 +109,7 @@ namespace BlazorApp.Client.Auth
                 }
                 else
                 {
-                    claims.Add(new Claim(ClaimTypes.Role, roles.ToString()));
+                    claims.Add(new Claim(ClaimTypes.Role, role.ToString()));
                 }
 
                 keyValuePairs.Remove(ClaimTypes.Role);

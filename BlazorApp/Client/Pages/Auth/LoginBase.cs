@@ -45,6 +45,7 @@ namespace BlazorApp.Client.Pages.Auth
             }
             else
             {
+              
                 //modal.Close();
                 //Modal.Show<ModalInfo>("Error", SharedModalOptions.SetParameterModalInfo(loginResult.Error, "alert alert-danger"), SharedModalOptions.modalOptionsInfo);
 

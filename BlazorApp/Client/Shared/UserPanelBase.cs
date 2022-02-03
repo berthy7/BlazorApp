@@ -1,4 +1,5 @@
-﻿using Blazorise;
+﻿using BlazorApp.Client.Auth;
+using Blazorise;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
@@ -13,6 +14,7 @@ namespace BlazorApp.Client.Shared
         [Inject] public AuthenticationStateProvider AuthenticationStateProvider { get; set; }
         [Inject] public NavigationManager NavigationManager { get; set; }
         [Inject] IJSRuntime JSRuntime { get; set; }
+        [Inject] ILoginServices loginService { get; set; }
 
         public Modal modalInfoUsuario { get; set; }
         public Modal modalCerrarSesion { get; set; }
@@ -41,7 +43,7 @@ namespace BlazorApp.Client.Shared
         protected async Task CerrarSesion()
         {
             //await ((CustomAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsAuthenticatedLogout();
-
+            await loginService.Logout();
             NavigationManager.NavigateTo("/login");
         }
 

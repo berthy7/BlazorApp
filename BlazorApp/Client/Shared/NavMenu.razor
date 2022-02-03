@@ -1,37 +1,97 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">BlazorApp</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
+﻿@using Microsoft.AspNetCore.Http
+@inherits NavMenuBase
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
-    </ul>
-</div>
+<LayoutSider>
+    <LayoutSiderContent>
+        <Bar Breakpoint="Breakpoint.Desktop" NavigationBreakpoint="Breakpoint.Tablet" ThemeContrast="ThemeContrast.Light"
+             Mode="BarMode.VerticalInline" CollapseMode="BarCollapseMode.Small" Class="bg-white" Style="color: var(--grisLetras);">
+            <BarToggler />
 
-@code {
-    private bool collapseNavMenu = true;
+                <BarBrand>
+                    <BarItem>
+                        <BarLink To="@(string.Empty)">
+                            <Image Source="/Images/LogoFOC50X50.png" />
+          
+                        </BarLink>
+                    </BarItem>
+                </BarBrand>
+     
+                <BarMenu>
+                    <BarStart>
+                        <BarItem>
+                            <BarLink To="">
+                                <BarIcon IconName="IconName.Home" />
+                                Incio
+                            </BarLink>
+                        </BarItem>
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
+                        @foreach (var item in sidebarInfo.Items)
+                        {
+                            <BarItem>
+                                @if (item.SubItems != null)
+                                {
+                                    <BarDropdown @bind-Visible="item.Visible">
+                                        <BarDropdownToggle>
+                                            @if (item.Icon != null)
+                                            {
+                                                <BarIcon IconName="item.Icon" />
+                                            }
+                                            @item.Text
+                                        </BarDropdownToggle>
+                                        <BarDropdownMenu>
+                                            @foreach (var subItem in item.SubItems)
+                                            {
+                                                if (subItem.SubItems != null)
+                                                {
+                                                    <BarDropdown @bind-Visible="subItem.Visible">
+                                                        <BarDropdownToggle>
+                                                            @if (subItem.Icon != null)
+                                                            {
+                                                                <BarIcon IconName="subItem.Icon" />
+                                                            }
+                                                            @subItem.Text
+                                                        </BarDropdownToggle>
+                                                        <BarDropdownMenu>
+                                                            @foreach (var subSubItem in subItem.SubItems)
+                                                            {
+                                                                <BarDropdownItem To="@subSubItem.To">
+                                                                    @if (subSubItem.Icon != null)
+                                                                    {
+                                                                        <BarIcon IconName="subSubItem.Icon" />
+                                                                    }
+                                                                    @subSubItem.Text
+                                                                </BarDropdownItem>
+                                                            }
+                                                        </BarDropdownMenu>
+                                                    </BarDropdown>
+                                                }
+                                                else
+                                                {
+                                                    <BarDropdownItem To="@subItem.To">
+                                                        @if (subItem.Icon != null)
+                                                        {
+                                                            <BarIcon IconName="subItem.Icon" />
+                                                        }
+                                                        @subItem.Text
+                                                    </BarDropdownItem>
+                                                }
+                                            }
+                                        </BarDropdownMenu>
+                                    </BarDropdown>
+                                }
+                                else
+                                {
+                                    <BarItem>
+                                        <BarLink To="@item.To" Title="@item.Text">
+                                            <Icon Name="item.Icon" />@item.Text
+                                        </BarLink>
+                                    </BarItem>
+                                }
+                            </BarItem>
+                        }
+                    </BarStart>
+                </BarMenu>
+           
+        </Bar>
+    </LayoutSiderContent>
+</LayoutSider>
