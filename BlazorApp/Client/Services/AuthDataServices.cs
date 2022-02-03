@@ -11,7 +11,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using BlazorApp.Shared.Models;
-using BlazorApp.Client.Data;
+using BlazorApp.Client.Helpers;
 
 namespace BlazorApp.Client.Services
 {

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
-using BlazorApp.Client.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -43,7 +42,7 @@ namespace BlazorApp.Client.Shared
         {
             //await ((CustomAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsAuthenticatedLogout();
 
-            NavigationManager.NavigateTo("/login/login");
+            NavigationManager.NavigateTo("/login");
         }
 
         public void AbrirModal()

@@ -2,7 +2,7 @@
 using BlazorApp.Client.Interfaces;
 using BlazorApp.Client.Shared;
 using BlazorApp.Shared.Models;
-using Blazored.Modal.Services;
+
 using Blazorise;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -15,7 +15,7 @@ namespace BlazorApp.Client.Pages.Auth
 {
     public class LoginBase : ComponentBase
     {
-        [CascadingParameter] public IModalService Modal { get; set; }
+        //[CascadingParameter] public IModalService Modal { get; set; }
         [Inject] NavigationManager navigationManager { get; set; }
 
         [Inject] IAuthDataServices authDataServices { get; set; }

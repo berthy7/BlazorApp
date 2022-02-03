@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BlazorApp.Client.Data
+namespace BlazorApp.Client.Helpers
 {
     public class AppSettings
     {

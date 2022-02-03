@@ -1,5 +1,4 @@
-﻿using BlazorApp.Client.Data;
-using BlazorApp.Shared.Models;
+﻿using BlazorApp.Shared.Models;
 using System.Threading.Tasks;
 
 namespace BlazorApp.Client.Interfaces

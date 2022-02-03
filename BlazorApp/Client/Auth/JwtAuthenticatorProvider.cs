@@ -20,7 +20,7 @@ namespace BlazorApp.Client.Auth
         public static readonly string TOKENKEY = "TOKENKEY";
         private AuthenticationState anonimo => new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
 
-        public JwtAuthenticatorProvider(IJSRuntime _js,HttpClient httpClient)
+        public JwtAuthenticatorProvider(IJSRuntime _js, HttpClient httpClient)
         {
             this.httpClient = httpClient;
             js = new IJSExtensions(_js);
