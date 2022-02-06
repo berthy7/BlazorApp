@@ -15,51 +15,62 @@
                         </BarLink>
                     </BarItem>
                 </BarBrand>
-     
-                <BarMenu>
+                 @if (menuArray == null){
+                    <BarMenu>
+                        <BarStart>
+                            <BarItem>
+                           
+                                  <div class="loader"></div>
+                            
+                            </BarItem>
+                             </BarStart>
+                        </BarMenu>
+                 }else
+                {
+                                <BarMenu>
                     <BarStart>
                         <BarItem>
                             <BarLink To="">
                                 <BarIcon IconName="IconName.Home" />
-                                Incio
+                                Inicio
                             </BarLink>
                         </BarItem>
 
-                        @foreach (var item in sidebarInfo.Items)
+                        @foreach (var item in menuArray)
                         {
                             <BarItem>
-                                @if (item.SubItems != null)
-                                {
-                                    <BarDropdown @bind-Visible="item.Visible">
+
+                                    <BarDropdown >
                                         <BarDropdownToggle>
                                             @if (item.Icon != null)
                                             {
                                                 <BarIcon IconName="item.Icon" />
                                             }
-                                            @item.Text
+                                            @item.Name
+                                      
                                         </BarDropdownToggle>
                                         <BarDropdownMenu>
-                                            @foreach (var subItem in item.SubItems)
+                                            @foreach (var subItem in item.Children)
                                             {
-                                                if (subItem.SubItems != null)
+                                                if (subItem.Children != null)
                                                 {
-                                                    <BarDropdown @bind-Visible="subItem.Visible">
+                                                    <BarDropdown>
                                                         <BarDropdownToggle>
                                                             @if (subItem.Icon != null)
                                                             {
                                                                 <BarIcon IconName="subItem.Icon" />
                                                             }
-                                                            @subItem.Text
+                                                            @subItem.Name
                                                         </BarDropdownToggle>
                                                         <BarDropdownMenu>
-                                                            @foreach (var subSubItem in subItem.SubItems)
+                                                            @foreach (var subSubItem in subItem.Children)
                                                             {
-                                                                <BarDropdownItem To="@subSubItem.To">
+                                                                <BarDropdownItem To="@subSubItem.Path">
                                                                     @if (subSubItem.Icon != null)
                                                                     {
                                                                         <BarIcon IconName="subSubItem.Icon" />
                                                                     }
-                                                                    @subSubItem.Text
+                                                                    @subSubItem.Name
                                                                 </BarDropdownItem>
                                                             }
                                                         </BarDropdownMenu>
@@ -67,30 +78,24 @@
                                                 }
                                                 else
                                                 {
-                                                    <BarDropdownItem To="@subItem.To">
+                                                    <BarDropdownItem To="@subItem.Path">
                                                         @if (subItem.Icon != null)
                                                         {
                                                             <BarIcon IconName="subItem.Icon" />
                                                         }
-                                                        @subItem.Text
+                                                        @subItem.Name
                                                     </BarDropdownItem>
                                                 }
                                             }
                                         </BarDropdownMenu>
                                     </BarDropdown>
-                                }
-                                else
-                                {
-                                    <BarItem>
-                                        <BarLink To="@item.To" Title="@item.Text">
-                                            <Icon Name="item.Icon" />@item.Text
-                                        </BarLink>
-                                    </BarItem>
-                                }
                             </BarItem>
                         }
                     </BarStart>
                 </BarMenu>
+            }
+
+
            
         </Bar>
     </LayoutSiderContent>

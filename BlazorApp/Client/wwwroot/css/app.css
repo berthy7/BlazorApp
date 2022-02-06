@@ -555,13 +555,14 @@ p.h1 {
         top: 0.5rem;
     }
 
+
+
 .loader,
 .loader:after {
     border-radius: 50%;
     width: 10em;
     height: 10em;
 }
-
 .loader {
     margin: 0px;
     font-size: 5px;

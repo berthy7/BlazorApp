@@ -31,7 +31,6 @@ namespace BlazorApp.Client
             builder.Services.AddScoped<AuthenticationStateProvider, JwtAuthenticatorProvider>(provider => provider.GetRequiredService<JwtAuthenticatorProvider>());
             builder.Services.AddScoped<ILoginServices, JwtAuthenticatorProvider>(provider => provider.GetRequiredService<JwtAuthenticatorProvider>());
             builder.Services.AddBlazoredModal();
-            builder.Services.AddScoped<MenuDataServices>();
 
             builder.Services.AddBlazorise(options =>
             {
@@ -39,7 +38,6 @@ namespace BlazorApp.Client
             })
                 .AddBootstrapProviders()
                 .AddFontAwesomeIcons();
-
 
             builder.Services.AddHttpClient<IAuthDataServices, AuthDataServices>();
 
